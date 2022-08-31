@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Deduplication
+#picard tools 2.21.9
+
+#$ -cwd
+#$ -v PATH=/vol/biotools/bin:/usr/bin
+#$ -N Cat_structure_vcfs
+#$ -l vf=55G
+#$ -l arch=lx-amd64
+#$ -l idle=1
+#$ -P denbi
+
+java -Xmx50g -jar /prj/pflaphy-gscan/software/picard.jar GatherVcfs O=/prj/pflaphy-gscan/Structure/LD_Pruned/All_introgression_4dgsites.LD_Pruned.vcf I=All_introgression_4dgsites_scaff1.rep0.LD_Pruned.vcf  I=All_introgression_4dgsites_scaff2.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff3.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff4.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff5.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff6.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff7.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff8.rep0.LD_Pruned.vcf I=All_introgression_4dgsites_scaff9.rep0.LD_Pruned.vcf 2> /prj/pflaphy-gscan/Structure/LD_Pruned/Gathervcfs.err

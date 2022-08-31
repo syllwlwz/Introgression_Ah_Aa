@@ -1,0 +1,28 @@
+#!/bin/bash
+
+###$ -t 1-9
+#$ -cwd
+#$ -v PATH=/vol/biotools/bin:/usr/bin
+#$ -N LDprune
+#$ -l vf=55G
+#$ -l arch=lx-amd64
+#$ -l idle=1
+#$ -P denbi
+
+
+#scaff=$(head -n $SGE_TASK_ID /prj/pflaphy-gscan/Mainscaffolds.list | tail -n 1)
+#echo $scaff
+#java -Xmx50g -jar /prj/pflaphy-gscan/software/gatk-4.1.9.0/gatk-package-4.1.9.0-local.jar SelectVariants -V /prj/pflaphy-gscan/Structure/All5_4dg.vcf -R /prj/pflaphy-gscan/Alyrata_107.fa -L $scaff -O /prj/pflaphy-gscan/Structure/All5_4dg_$scaff.vcf 2> /prj/pflaphy-gscan/Structure/All5_4dg_$scaff.err
+
+python2 /prj/pflaphy-gscan/software/LD_prune.py -v /prj/pflaphy-gscan/Structure/ -w 500 -r 1 -d 500 -o LD_struc_5 -gz false -c 0.1 -m 1 -mf 0.05 -s true 2> /prj/pflaphy-gscan/Structure/LDprune_structure_5.err
+
+#parser.add_argument('-v', type = str, metavar = 'vcf_path', required = True, help = 'path to vcfs')
+#parser.add_argument('-w', type = str, metavar = 'Window_Size', required = True, help = 'size of scaffold window')
+#parser.add_argument('-r', type = str, metavar = 'Number_Replications', required = True, help = 'Number of replicate data sets')
+#parser.add_argument('-d', type = str, metavar = 'Window_Distance', required = True, help = 'distance between any 2 windows')
+#parser.add_argument('-m', type = str, metavar = 'Missing_Data', required = True, help = 'amount of missing data to allow per site (between 0-1)')
+#parser.add_argument('-mf', type = str, metavar = 'Minimum_Frequency', required = True, help = 'minimum minor allele frequency')
+#parser.add_argument('-o', type = str, metavar = 'Output_Prefix', required = True, help = 'Vcfs retain original scaffold name but the concatenated Structure input file will be a text file with specified by output and within the LD_pruned directory')
+#parser.add_argument('-s', type = str, metavar = 'Subset?', required = False, default = 'false', help = 'if true, this will subsample polyploid data to create psuedo-diploid data')
+#parser.add_argument('-c', type = float, metavar = 'maximum_correlation', required = True, default = '1.0', help = 'Maximum correlation between adjacent sites allowed for site to be used')
+#parser.add_argument('-gz', type = str, metavar = 'gzipped?', required = True, help = 'are vcfs gzipped (true) or not (false)')
